@@ -1,0 +1,3 @@
+﻿  chapter_2.cpp
+C:\Users\kparm\Desktop\Practice\opencv_practice\opencv_practice\chapter_2.cpp(11,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  opencv_practice.vcxproj -> C:\Users\kparm\Desktop\Practice\opencv_practice\x64\Debug\opencv_practice.exe
