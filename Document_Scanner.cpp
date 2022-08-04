@@ -11,7 +11,7 @@ using namespace cv;
 //Step-3 Warping of image
 
 
-Mat imgOriginal, imgGray, imgCanny, imgThreshold, imgDil, imgBlur, imgWarp;
+Mat imgOriginal, imgGray, imgCanny, imgThreshold, imgDil, imgBlur, imgWarp, final_image;
 vector<Point> initialPoints, docPoints; 
 vector<vector<Point>> contours;								//Will be points of each shape or contours
 vector<Vec4i> hierarchy;
@@ -139,16 +139,12 @@ void main() {
 	Rect roi(cropvalue, cropvalue, (w - (2 * cropvalue)), (h - (2 * cropvalue)));
 	Mat imgCrop = imgWarp(roi);
 
-	Mat pre_final, final_image;
-	threshold(imgCrop, pre_final,150,255, THRESH_BINARY);
-
-	//adaptiveThreshold(imgCrop,final_image, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY,480,1);
-
+	
+	cvtColor(imgCrop, final_image, COLOR_BGR2GRAY);
+	adaptiveThreshold(final_image,final_image, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY,71,7);
 	imshow("Image", imgOriginal);	//To show the image
-	//imshow("Thresholded Img", imgThreshold);
-	//imshow("Warped Img", imgWarp);
-	imshow("prefinal Image", pre_final);
-	//imshow("Final Image", final_image);
+	
+	imshow("Final Image", final_image);
 	waitKey(0);		//To hold the image 
 	//0 because for infinite time
 
