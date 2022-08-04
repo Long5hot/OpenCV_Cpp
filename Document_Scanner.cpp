@@ -16,7 +16,7 @@ vector<Point> initialPoints, docPoints;
 vector<vector<Point>> contours;								//Will be points of each shape or contours
 vector<Vec4i> hierarchy;
 
-float w = 420, h = 596;
+float w = 480, h = 640;
 
 Mat preProcessing(Mat img) {
 	
@@ -139,11 +139,16 @@ void main() {
 	Rect roi(cropvalue, cropvalue, (w - (2 * cropvalue)), (h - (2 * cropvalue)));
 	Mat imgCrop = imgWarp(roi);
 
+	Mat pre_final, final_image;
+	threshold(imgCrop, pre_final,150,255, THRESH_BINARY);
+
+	//adaptiveThreshold(imgCrop,final_image, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY,480,1);
 
 	imshow("Image", imgOriginal);	//To show the image
-	imshow("Thresholded Img", imgThreshold);
-	imshow("Warped Img", imgWarp);
-	imshow("Cropped Img", imgCrop);
+	//imshow("Thresholded Img", imgThreshold);
+	//imshow("Warped Img", imgWarp);
+	imshow("prefinal Image", pre_final);
+	//imshow("Final Image", final_image);
 	waitKey(0);		//To hold the image 
 	//0 because for infinite time
 
